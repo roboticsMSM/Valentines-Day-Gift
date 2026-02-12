@@ -137,7 +137,7 @@ function updateCounter() {
     if (currentCount < shuffledData.length) {
         counter.innerText = `${currentCount + 1} / ${shuffledData.length}`;
     } else {
-        counter.innerText = "100 / 100";
+        counter.innerText = "75 / 75";
         container.innerHTML = "<h2 style='color:white; text-align:center;'>I love you sm Manya ❤️</h2>";
     }
 }
