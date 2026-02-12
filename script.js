@@ -18,14 +18,12 @@ const data = [
 { text: "you're charming", img: "photo (68).jpg" },
 { text: "you mean everything to me", img: "photo (66).jpg" },
 { text: "you're the best thing that ever happened to me", img: "photo (62).jpg" },
-{ text: "you have stunning hips", img: "photo (75).jpg" },
 { text: "you feel like home", img: "photo (65).jpg" },
 { text: "your warmth comforts me in ways you can't imagine", img: "photo (67).jpg" },
 { text: "you're my queen", img: "photo (79).jpg" },
 { text: "do I even need a reason?", img: "photo (74).jpg" },
 { text: "you look extremely huggable", img: "photo (20).jpg" },
 { text: "you look extremely kissable", img: "photo (19).jpg" },
-{ text: "you're kind", img: "photo (15).jpg" },
 { text: "you're nice to others", img: "photo (13).jpg" },
 { text: "you feel deeply", img: "photo (12).jpg" },
 { text: "candid shots of you are pretty asf too", img: "photo (76).jpg" },
@@ -47,7 +45,6 @@ const data = [
 { text: "you're pure", img: "photo (55).jpg" },
 { text: "you value me", img: "photo (25).jpg" },
 { text: "you're always right", img: "photo (21).jpg" },
-{ text: "you have the best thighs", img: "photo (40).jpg" },
 { text: "you're loyal", img: "photo (29).jpg" },
 { text: "you make the rest of the world go quiet", img: "photo (31).jpg" },
 { text: "you make my heart skip a beat every time", img: "photo (32).jpg" },
@@ -78,7 +75,6 @@ const data = [
 { text: "golgappe jaise gaal the aapke-", img: "photo (26).jpg" },
 { text: "you're sweet", img: "photo (97).jpg" },
 { text: "you always come back", img: "photo (98).jpg" },
-{ text: "I wanna marry you someday even if it sounds impossible", img: "photo (7).jpg" },
 { text: "you're art in motion", img: "photo (5).jpg" }
 
 ];
