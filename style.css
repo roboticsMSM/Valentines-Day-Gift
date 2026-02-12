@@ -7,6 +7,11 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden;
+    touch-action: none; 
+    overscroll-behavior: none;
+    position: fixed; /* Keeps the background from moving */
+    width: 100%;
+    height: 100%;
 }
 
 .container {
@@ -49,6 +54,8 @@ body {
     transition: transform 0.3s ease-out;
     cursor: grab;
     user-select: none;
+    /* ADD THIS TO ENSURE THE CARD CAPTURES THE TOUCH */
+    touch-action: none;
 }
 
 .polaroid img {

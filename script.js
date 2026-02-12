@@ -103,65 +103,54 @@ const data = [
     { text: "you're perfect", img: "photo (1).gif" }
 
 ];
-// 2. SHUFFLE: This mixes your 100 reasons once at the very start.
-// This ensures she sees them in a random order every time she opens the site.
+
 let shuffledData = data.sort(() => Math.random() - 0.5);
+let currentCount = 0;
+let cardIndex = 0;
 
-// 3. TRACKING: We need to know which card we are on.
-let currentCount = 0; // The number of cards swiped
-let cardIndex = 0;    // The index of the next card to be created
-
-// Grab the HTML elements so we can put things inside them
 const container = document.getElementById('stack-container');
 const counter = document.getElementById('counter');
 
-// 4. CREATING THE CARD: This function builds the "Polaroid"
 function createCard(index) {
-    // If we've run out of reasons, stop creating cards
     if (index >= shuffledData.length) return null;
 
     const card = document.createElement('div');
     card.className = 'polaroid';
     
-    // Give it a random slight tilt so it looks like a messy stack of photos
     const randomRot = Math.floor(Math.random() * 10) - 5;
     card.style.transform = `rotate(${randomRot}deg)`;
 
-    // Put the image and the text inside the card
-    // draggable="false" stops the "crashing" glitch
     card.innerHTML = `
         <img src="${shuffledData[index].img}" draggable="false">
         <div class="reason">${shuffledData[index].text}</div>
     `;
 
-    // 5. THE SWIPE LOGIC (Hammer.js)
     const hammer = new Hammer(card);
 
-    // This runs WHILE she is dragging the card
+    // FIX: Tells the phone to let us swipe in every direction (up, down, left, right)
+    hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+
     hammer.on('pan', (e) => {
-        card.style.transition = 'none'; // Make it follow her finger instantly
-        // Move the card and rotate it based on how far she has dragged it
+        // FIX: This stops the phone from trying to refresh or scroll the page
+        if (e.pointerType === 'touch') e.preventDefault(); 
+        
+        card.style.transition = 'none';
         card.style.transform = `translate(${e.deltaX}px, ${e.deltaY}px) rotate(${e.deltaX / 10}deg)`;
     });
 
-    // This runs when she RELEASES the card
     hammer.on('panend', (e) => {
         card.style.transition = 'transform 0.5s ease-out';
         
-        // If the swipe was big enough (more than 100 pixels in any direction)
         if (Math.abs(e.deltaX) > 100 || Math.abs(e.deltaY) > 100) {
-            // Throw the card off the screen
             card.style.transform = `translate(${e.deltaX * 5}px, ${e.deltaY * 5}px) rotate(${e.deltaX / 5}deg)`;
             
-            // Wait 300ms for the animation to finish, then delete it and load a new one
             setTimeout(() => {
                 card.remove();
                 currentCount++;
                 updateCounter();
-                addNewCard(); // Put a new card at the bottom of the stack
+                addNewCard();
             }, 300);
         } else {
-            // If the swipe was tiny, snap the card back to the center
             card.style.transform = `rotate(${randomRot}deg)`;
         }
     });
@@ -169,7 +158,6 @@ function createCard(index) {
     return card;
 }
 
-// 6. UPDATING THE COUNTER: Changes the "1 / 100" text
 function updateCounter() {
     if (currentCount < shuffledData.length) {
         counter.innerText = `${currentCount + 1} / ${shuffledData.length}`;
@@ -179,15 +167,13 @@ function updateCounter() {
     }
 }
 
-// 7. STACKING: Adds the next card to the container
 function addNewCard() {
     const newCard = createCard(cardIndex);
     if (newCard) {
-        container.prepend(newCard); // "Prepend" puts it BEHIND the current card
+        container.prepend(newCard);
         cardIndex++;
     }
 }
 
-// START THE SITE: Load the first two cards so there is a stack
-addNewCard(); // Card 1 (on top)
-addNewCard(); // Card 2 (visible when Card 1 is swiped)
+addNewCard();
+addNewCard();
