@@ -1,0 +1,79 @@
+body {
+    background-color: #ffc2d1; /* Your requested pink */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Give it a handwritten feel */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#counter {
+    position: absolute;
+    top: 50px;
+    font-weight: bold;
+    color: #fb6f92;
+    font-size: 1.2rem;
+    background: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+#stack-container {
+    position: relative;
+    width: 320px;
+    height: 420px;
+}
+
+.polaroid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 15px 15px 60px 15px; /* Bottom padding for text */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-out;
+    cursor: grab;
+    user-select: none;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background: #eee;
+    /* ADD THESE THREE LINES */
+    pointer-events: none;    /* Makes the image "invisible" to clicks */
+    user-select: none;      /* Prevents highlighting */
+    -webkit-user-drag: none; /* Prevents the "ghost image" drag effect */
+}
+
+.polaroid .reason {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+    font-size: 1.1rem;
+    padding: 0 10px;
+}
+
+.instruction {
+    position: absolute;
+    bottom: 50px;
+    color: white;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
